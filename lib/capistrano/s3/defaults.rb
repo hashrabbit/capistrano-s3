@@ -3,6 +3,7 @@ module Capistrano
     module Defaults
       DEFAULTS = {
         :deployment_path      => proc { Dir.pwd.gsub("\n", "") + "/public" },
+        :destination_path     => '',
         :bucket_write_options => { :acl => :public_read },
         :s3_endpoint          => "s3.amazonaws.com",
         :redirect_options     => {},

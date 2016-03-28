@@ -18,7 +18,7 @@ module Capistrano
         task :upload_files do
           extra_options = { :write => bucket_write_options, :redirect => redirect_options }
           S3::Publisher.publish!(s3_endpoint, access_key_id, secret_access_key,
-                             bucket, deployment_path, extra_options)
+                             bucket, deployment_path, desination_path, extra_options)
         end
       end
 

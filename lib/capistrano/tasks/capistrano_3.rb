@@ -15,7 +15,7 @@ namespace :deploy do
     task :upload_files do
       extra_options = { :write => fetch(:bucket_write_options), :redirect => fetch(:redirect_options) }
       Capistrano::S3::Publisher.publish!(fetch(:s3_endpoint), fetch(:access_key_id), fetch(:secret_access_key),
-                             fetch(:bucket), fetch(:deployment_path), extra_options)
+                             fetch(:bucket), fetch(:deployment_path), fetch(:destination_path), extra_options)
     end
   end
 

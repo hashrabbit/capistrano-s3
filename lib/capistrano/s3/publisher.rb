@@ -7,14 +7,14 @@ module Capistrano
     module Publisher
       LAST_PUBLISHED_FILE = '.last_published'
 
-      def self.publish!(s3_endpoint, key, secret, bucket, source, extra_options)
+      def self.publish!(s3_endpoint, key, secret, bucket, source, destination, extra_options)
         s3 = self.establish_s3_client_connection!(s3_endpoint, key, secret)
 
         self.files(source).each do |file|
           if !File.directory?(file)
             next if self.published?(file)
 
-            path = self.base_file_path(source, file)
+            path = File.join(destination, self.base_file_path(source, file))
             path.gsub!(/^\//, "") # Remove preceding slash for S3
 
             self.put_object(s3, bucket, path, file, extra_options)
